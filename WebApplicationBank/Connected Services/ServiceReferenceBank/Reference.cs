@@ -372,35 +372,35 @@ namespace WebApplicationBank.ServiceReferenceBank {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/CreateAccount", ReplyAction="http://tempuri.org/IService1/CreateAccountResponse")]
         System.Threading.Tasks.Task<WebApplicationBank.ServiceReferenceBank.Account> CreateAccountAsync(WebApplicationBank.ServiceReferenceBank.Account account);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/FindAccount", ReplyAction="http://tempuri.org/IService1/FindAccountResponse")]
+        WebApplicationBank.ServiceReferenceBank.Account FindAccount(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/FindAccount", ReplyAction="http://tempuri.org/IService1/FindAccountResponse")]
+        System.Threading.Tasks.Task<WebApplicationBank.ServiceReferenceBank.Account> FindAccountAsync(int id);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Login", ReplyAction="http://tempuri.org/IService1/LoginResponse")]
         WebApplicationBank.ServiceReferenceBank.Account Login(string user, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Login", ReplyAction="http://tempuri.org/IService1/LoginResponse")]
         System.Threading.Tasks.Task<WebApplicationBank.ServiceReferenceBank.Account> LoginAsync(string user, string password);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/FindByAccountNumber", ReplyAction="http://tempuri.org/IService1/FindByAccountNumberResponse")]
-        WebApplicationBank.ServiceReferenceBank.Account FindByAccountNumber(string accountNumber);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/FindByAccountNumber", ReplyAction="http://tempuri.org/IService1/FindByAccountNumberResponse")]
-        System.Threading.Tasks.Task<WebApplicationBank.ServiceReferenceBank.Account> FindByAccountNumberAsync(string accountNumber);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Deposit", ReplyAction="http://tempuri.org/IService1/DepositResponse")]
+        WebApplicationBank.ServiceReferenceBank.TransactionHistory Deposit(int AccountNumber, double Amount, string Token);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Deposit", ReplyAction="http://tempuri.org/IService1/DepositResponse")]
-        WebApplicationBank.ServiceReferenceBank.TransactionHistory Deposit(int AccountNumber, double Amount);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Deposit", ReplyAction="http://tempuri.org/IService1/DepositResponse")]
-        System.Threading.Tasks.Task<WebApplicationBank.ServiceReferenceBank.TransactionHistory> DepositAsync(int AccountNumber, double Amount);
+        System.Threading.Tasks.Task<WebApplicationBank.ServiceReferenceBank.TransactionHistory> DepositAsync(int AccountNumber, double Amount, string Token);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Withdraw", ReplyAction="http://tempuri.org/IService1/WithdrawResponse")]
-        WebApplicationBank.ServiceReferenceBank.TransactionHistory Withdraw(int AccountNumber, double Amount);
+        WebApplicationBank.ServiceReferenceBank.TransactionHistory Withdraw(int AccountNumber, double Amount, string Token);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Withdraw", ReplyAction="http://tempuri.org/IService1/WithdrawResponse")]
-        System.Threading.Tasks.Task<WebApplicationBank.ServiceReferenceBank.TransactionHistory> WithdrawAsync(int AccountNumber, double Amount);
+        System.Threading.Tasks.Task<WebApplicationBank.ServiceReferenceBank.TransactionHistory> WithdrawAsync(int AccountNumber, double Amount, string Token);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Transfer", ReplyAction="http://tempuri.org/IService1/TransferResponse")]
-        WebApplicationBank.ServiceReferenceBank.TransactionHistory Transfer(int SenderAccountNumber, int ReceiverAccountNumber, double Amount);
+        WebApplicationBank.ServiceReferenceBank.TransactionHistory Transfer(int SenderAccountNumber, int ReceiverAccountNumber, double Amount, string Token);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Transfer", ReplyAction="http://tempuri.org/IService1/TransferResponse")]
-        System.Threading.Tasks.Task<WebApplicationBank.ServiceReferenceBank.TransactionHistory> TransferAsync(int SenderAccountNumber, int ReceiverAccountNumber, double Amount);
+        System.Threading.Tasks.Task<WebApplicationBank.ServiceReferenceBank.TransactionHistory> TransferAsync(int SenderAccountNumber, int ReceiverAccountNumber, double Amount, string Token);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ListAccount", ReplyAction="http://tempuri.org/IService1/ListAccountResponse")]
         WebApplicationBank.ServiceReferenceBank.Account[] ListAccount();
@@ -458,6 +458,14 @@ namespace WebApplicationBank.ServiceReferenceBank {
             return base.Channel.CreateAccountAsync(account);
         }
         
+        public WebApplicationBank.ServiceReferenceBank.Account FindAccount(int id) {
+            return base.Channel.FindAccount(id);
+        }
+        
+        public System.Threading.Tasks.Task<WebApplicationBank.ServiceReferenceBank.Account> FindAccountAsync(int id) {
+            return base.Channel.FindAccountAsync(id);
+        }
+        
         public WebApplicationBank.ServiceReferenceBank.Account Login(string user, string password) {
             return base.Channel.Login(user, password);
         }
@@ -466,36 +474,28 @@ namespace WebApplicationBank.ServiceReferenceBank {
             return base.Channel.LoginAsync(user, password);
         }
         
-        public WebApplicationBank.ServiceReferenceBank.Account FindByAccountNumber(string accountNumber) {
-            return base.Channel.FindByAccountNumber(accountNumber);
+        public WebApplicationBank.ServiceReferenceBank.TransactionHistory Deposit(int AccountNumber, double Amount, string Token) {
+            return base.Channel.Deposit(AccountNumber, Amount, Token);
         }
         
-        public System.Threading.Tasks.Task<WebApplicationBank.ServiceReferenceBank.Account> FindByAccountNumberAsync(string accountNumber) {
-            return base.Channel.FindByAccountNumberAsync(accountNumber);
+        public System.Threading.Tasks.Task<WebApplicationBank.ServiceReferenceBank.TransactionHistory> DepositAsync(int AccountNumber, double Amount, string Token) {
+            return base.Channel.DepositAsync(AccountNumber, Amount, Token);
         }
         
-        public WebApplicationBank.ServiceReferenceBank.TransactionHistory Deposit(int AccountNumber, double Amount) {
-            return base.Channel.Deposit(AccountNumber, Amount);
+        public WebApplicationBank.ServiceReferenceBank.TransactionHistory Withdraw(int AccountNumber, double Amount, string Token) {
+            return base.Channel.Withdraw(AccountNumber, Amount, Token);
         }
         
-        public System.Threading.Tasks.Task<WebApplicationBank.ServiceReferenceBank.TransactionHistory> DepositAsync(int AccountNumber, double Amount) {
-            return base.Channel.DepositAsync(AccountNumber, Amount);
+        public System.Threading.Tasks.Task<WebApplicationBank.ServiceReferenceBank.TransactionHistory> WithdrawAsync(int AccountNumber, double Amount, string Token) {
+            return base.Channel.WithdrawAsync(AccountNumber, Amount, Token);
         }
         
-        public WebApplicationBank.ServiceReferenceBank.TransactionHistory Withdraw(int AccountNumber, double Amount) {
-            return base.Channel.Withdraw(AccountNumber, Amount);
+        public WebApplicationBank.ServiceReferenceBank.TransactionHistory Transfer(int SenderAccountNumber, int ReceiverAccountNumber, double Amount, string Token) {
+            return base.Channel.Transfer(SenderAccountNumber, ReceiverAccountNumber, Amount, Token);
         }
         
-        public System.Threading.Tasks.Task<WebApplicationBank.ServiceReferenceBank.TransactionHistory> WithdrawAsync(int AccountNumber, double Amount) {
-            return base.Channel.WithdrawAsync(AccountNumber, Amount);
-        }
-        
-        public WebApplicationBank.ServiceReferenceBank.TransactionHistory Transfer(int SenderAccountNumber, int ReceiverAccountNumber, double Amount) {
-            return base.Channel.Transfer(SenderAccountNumber, ReceiverAccountNumber, Amount);
-        }
-        
-        public System.Threading.Tasks.Task<WebApplicationBank.ServiceReferenceBank.TransactionHistory> TransferAsync(int SenderAccountNumber, int ReceiverAccountNumber, double Amount) {
-            return base.Channel.TransferAsync(SenderAccountNumber, ReceiverAccountNumber, Amount);
+        public System.Threading.Tasks.Task<WebApplicationBank.ServiceReferenceBank.TransactionHistory> TransferAsync(int SenderAccountNumber, int ReceiverAccountNumber, double Amount, string Token) {
+            return base.Channel.TransferAsync(SenderAccountNumber, ReceiverAccountNumber, Amount, Token);
         }
         
         public WebApplicationBank.ServiceReferenceBank.Account[] ListAccount() {

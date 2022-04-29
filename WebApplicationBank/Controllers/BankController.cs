@@ -10,6 +10,7 @@ namespace WebApplicationBank.Controllers
     public class BankController : Controller
     {
         Service1Client service;
+        public static Account account = new Account();
 
         public BankController()
         {
@@ -29,17 +30,20 @@ namespace WebApplicationBank.Controllers
         [HttpPost]
         public ActionResult Login(string UserName, string Password)
         {
-            if(service.Login(UserName, Password) == null)
+            account = service.Login(UserName, Password);
+            if (service.Login(UserName, Password) == null)
             {
                 return View("Failed");
             }
-            return View("Success");
+            
+            return RedirectToAction("Details");
         }
 
         // GET: Bank/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details()
         {
-            return View();
+            account = service.FindAccount(account.AccountNumber);
+            return View(account);
         }
 
         // GET: Bank/Create
@@ -80,32 +84,61 @@ namespace WebApplicationBank.Controllers
             }
         }
 
-        
+        public ActionResult Deposit()
+        {
+            account = service.FindAccount(account.AccountNumber);
+            return View(account);
+        }
+
+        [HttpPost]
         public ActionResult Deposit(int AccountNumber, double Amount)
         {
-            if(service.Deposit(AccountNumber, Amount)== null)
+            if(service.Deposit(AccountNumber, Amount, account.Token) == null)
             {
                 return View("Failed");
             }
-            return View("Success");
+            else
+            {
+                return View("Success");
+            }
+        }
+        public ActionResult Withdraw()
+        {
+            account = service.FindAccount(account.AccountNumber);
+            return View(account);
         }
 
+        [HttpPost]
         public ActionResult Withdraw(int AccountNumber, double Amount)
         {
-            if (service.Withdraw(AccountNumber, Amount) == null)
+            if (service.Withdraw(AccountNumber, Amount, account.Token) == null)
             {
                 return View("Failed");
             }
-            return View("Success");
+            else
+            {
+                return View("Success");
+            }
         }
 
+        public ActionResult Transfer()
+        {
+            account = service.FindAccount(account.AccountNumber);
+            return View(account);
+        }
+
+        [HttpPost]
         public ActionResult Transfer(int SenderAccountNumber, int ReceiverAccountNumber, double Amount)
         {
-            if (service.Transfer(SenderAccountNumber, ReceiverAccountNumber, Amount) == null)
+            if (service.Transfer(SenderAccountNumber, ReceiverAccountNumber, Amount, account.Token) == null)
             {
                 return View("Failed");
             }
-            return View("Success");
+            else
+            {
+                return View("Success");
+            }
+            
         }
 
 

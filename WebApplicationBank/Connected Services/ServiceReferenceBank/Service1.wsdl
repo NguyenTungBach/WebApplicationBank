@@ -20,17 +20,17 @@
   <wsdl:message name="IService1_CreateAccount_OutputMessage">
     <wsdl:part name="parameters" element="tns:CreateAccountResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_FindAccount_InputMessage">
+    <wsdl:part name="parameters" element="tns:FindAccount" />
+  </wsdl:message>
+  <wsdl:message name="IService1_FindAccount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FindAccountResponse" />
+  </wsdl:message>
   <wsdl:message name="IService1_Login_InputMessage">
     <wsdl:part name="parameters" element="tns:Login" />
   </wsdl:message>
   <wsdl:message name="IService1_Login_OutputMessage">
     <wsdl:part name="parameters" element="tns:LoginResponse" />
-  </wsdl:message>
-  <wsdl:message name="IService1_FindByAccountNumber_InputMessage">
-    <wsdl:part name="parameters" element="tns:FindByAccountNumber" />
-  </wsdl:message>
-  <wsdl:message name="IService1_FindByAccountNumber_OutputMessage">
-    <wsdl:part name="parameters" element="tns:FindByAccountNumberResponse" />
   </wsdl:message>
   <wsdl:message name="IService1_Deposit_InputMessage">
     <wsdl:part name="parameters" element="tns:Deposit" />
@@ -71,13 +71,13 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/CreateAccount" message="tns:IService1_CreateAccount_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/CreateAccountResponse" message="tns:IService1_CreateAccount_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="FindAccount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/FindAccount" message="tns:IService1_FindAccount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/FindAccountResponse" message="tns:IService1_FindAccount_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="Login">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/Login" message="tns:IService1_Login_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/LoginResponse" message="tns:IService1_Login_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="FindByAccountNumber">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService1/FindByAccountNumber" message="tns:IService1_FindByAccountNumber_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService1/FindByAccountNumberResponse" message="tns:IService1_FindByAccountNumber_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Deposit">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/Deposit" message="tns:IService1_Deposit_InputMessage" />
@@ -120,8 +120,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Login">
-      <soap:operation soapAction="http://tempuri.org/IService1/Login" style="document" />
+    <wsdl:operation name="FindAccount">
+      <soap:operation soapAction="http://tempuri.org/IService1/FindAccount" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -129,8 +129,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="FindByAccountNumber">
-      <soap:operation soapAction="http://tempuri.org/IService1/FindByAccountNumber" style="document" />
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://tempuri.org/IService1/Login" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

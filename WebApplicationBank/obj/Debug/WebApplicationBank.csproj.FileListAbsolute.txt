@@ -76,3 +76,4 @@ F:\HocWeb\EAD\BT Webservice\WebApplicationBank\WebApplicationBank\obj\Debug\WebA
 F:\HocWeb\EAD\BT Webservice\WebApplicationBank\WebApplicationBank\obj\Debug\WebApplicationBank.csproj.CopyComplete
 F:\HocWeb\EAD\BT Webservice\WebApplicationBank\WebApplicationBank\obj\Debug\WebApplicationBank.dll
 F:\HocWeb\EAD\BT Webservice\WebApplicationBank\WebApplicationBank\obj\Debug\WebApplicationBank.pdb
+F:\HocWeb\EAD\BT Webservice\WebApplicationBank\WebApplicationBank\obj\Debug\WebApplicationBank.csproj.AssemblyReference.cache
